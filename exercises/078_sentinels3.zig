@@ -8,7 +8,7 @@
 // Yes, we can. Zig's @ptrCast() builtin can do this. Check out
 // the signature:
 //
-//     @ptrCast(comptime DestType: type, value: anytype) DestType
+//     @ptrCast(value: anytype) anytype
 //
 // See if you can use it to solve the same many-item pointer
 // problem, but without needing a length!
@@ -21,7 +21,7 @@ pub fn main() void {
     const data: [*]const u8 = "Weird Data!";
 
     // Please cast 'data' to 'printable':
-    const printable: [*:0]const u8 = @ptrCast([*:0]const u8, data);
+    const printable: [*:0]const u8 = @ptrCast(data);
 
     print("{s}\n", .{printable});
 }
